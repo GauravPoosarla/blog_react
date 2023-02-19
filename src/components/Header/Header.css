@@ -1,0 +1,31 @@
+nav{
+  background-color: #000;
+  color: #fff;
+  height: 90px;
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-links{
+  display: flex;
+  width: 50%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding-right: 80px;
+}
+
+.logo{
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 120px;
+}
+
+.logo h1{
+  margin: 0px;
+}

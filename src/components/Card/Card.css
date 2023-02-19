@@ -1,0 +1,85 @@
+* {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.paddings{
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+.card{
+  margin: 80px;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  width: 230px;
+}
+
+.card img{
+  height: 50%;
+  width: 100%;
+}
+
+.info{
+  display: flex;
+  flex-direction: column;
+  height: 60%;
+  justify-content: flex-start;
+  padding: 5px;
+  flex-wrap: wrap;
+  border: rgb(192, 188, 188) solid 1px;
+}
+
+.title{
+  font-size: 20px;
+  font-weight: 1.82rem;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.date-time{
+  display: flex;
+  flex-direction: row;
+  height: 10%;
+  color: rgb(192, 188, 188);
+  justify-content: space-between;
+  font-size: small;
+  margin-bottom: 0px;
+}
+
+.description{
+  display: flex;
+  color: rgb(155, 152, 152);
+  font-size: small;
+}
+
+.engagements{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 15px;
+  color:rgb(155, 152, 152);
+  font-size: small;
+  
+}
+
+.engagements img{
+  height: 20px;
+  width: 20px;
+}
+
+.engagements span {
+  margin-left: 5px;
+  font-size: medium;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  display:block;
+  width: 100%;               
+  background-color:rgb(192, 188, 188);
+  height: 1px;
+}
