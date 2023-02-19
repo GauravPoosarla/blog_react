@@ -7,16 +7,32 @@ import data from './assets/mockData/index.json';
 
 function App() {
   const clapArray = new Array(data.length).fill(0);
+  const clapClickedArray = new Array(data.length).fill(false);
+
   data.data.forEach((item, index) => {
     clapArray[index] = item.claps;
   });
 
   const [claps, setClaps] = React.useState(clapArray);
+  const [clapClicked, setClapClicked] = React.useState(clapClickedArray);
 
   const clapHandler = (index) => {
-    const newClaps = [...claps];
-    newClaps[index] = newClaps[index] + 1;
-    setClaps(newClaps);
+    if(!clapClicked[index]) {
+      const newClaps = [...claps];
+      const newClapClicked = [...clapClicked];
+      newClaps[index] = newClaps[index] + 1;
+      newClapClicked[index] = true;
+      setClaps(newClaps);
+      setClapClicked(newClapClicked);
+    }
+    else {
+      const newClaps = [...claps];
+      const newClapClicked = [...clapClicked];
+      newClaps[index] = newClaps[index] - 1;
+      newClapClicked[index] = false;
+      setClaps(newClaps);
+      setClapClicked(newClapClicked);
+    }
   };
   
   return (
