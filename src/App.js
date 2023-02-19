@@ -7,25 +7,23 @@ import data from './assets/mockData/index.json';
 
 function App() {
   const clapArray = new Array(data.length).fill(0);
+  data.data.forEach((item, index) => {
+    clapArray[index] = item.claps;
+  });
+
   const [claps, setClaps] = React.useState(clapArray);
-  const [indexClapped, setIndexClapped] = React.useState(-1);
 
   const clapHandler = (index) => {
-    if(indexClapped === -1) return;
-
-    if (claps[indexClapped]) {
-      setClaps(claps.map((clap, i) => (i === index ? clap - 1 : clap)));
-    } else {
-      setClaps(claps.map((clap, i) => (i === index ? clap + 1 : clap)));
-    }
-    setIndexClapped(claps[indexClapped] ? -1 : index);
+    const newClaps = [...claps];
+    newClaps[index] = newClaps[index] + 1;
+    setClaps(newClaps);
   };
-
+  
   return (
     <div>
       <Header />
       <Body>
-      {data.data.map((item,i) =>  <Card data={item} funcClap={clapHandler} index={i}/>)}
+      {data.data.map((item,i) =>  <Card data={item} claps={claps} funcClap={clapHandler} index={i}/>)}
       </Body> 
       <Footer />
     </div>

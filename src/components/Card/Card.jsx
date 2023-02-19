@@ -31,8 +31,8 @@ export default function Card(props) {
         <hr />
         <div className="engagements">
           <div>
-            <img src={clapping} alt="clap" />
-            <span>{props.data.claps}</span>
+            <img src={clapping} alt="clap" onClick={handleClaps} />
+            <span>{props.claps[props.index]}</span>
           </div>
           <div>
             {like ? (
