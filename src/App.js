@@ -39,7 +39,7 @@ function App() {
     <div>
       <Header />
       <Body>
-      {data.data.map((item,i) =>  <Card data={item} claps={claps} funcClap={clapHandler} index={i}/>)}
+      {data.data.map((item,i) =>  <Card data={item} claps={claps} clapHandler={clapHandler} index={i}/>)}
       </Body> 
       <Footer />
     </div>

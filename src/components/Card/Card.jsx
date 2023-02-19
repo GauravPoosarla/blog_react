@@ -6,29 +6,14 @@ import heart_red from "../../assets/Icons/heart-red.svg";
 
 export default function Card(props) {
   const [like, setLike] = React.useState(false);
-  const [clapClicked, setClapClicked] = React.useState(false);
 
   const handleLike = () => {
     setLike(!like);
   };
 
   const handleClaps = () => {
-    props.funcClap(props.index);
+    props.clapHandler(props.index);
   };
-
-  // const clapHandler = (index) => {
-  //   if (!clapClicked) {
-  //     const newClaps = [...props.claps];
-  //     newClaps[index] = newClaps[index] + 1;
-  //     props.setClaps(newClaps);
-  //     props.setClapClicked(true);
-  //   } else {
-  //     const newClaps = [...props.claps];
-  //     newClaps[index] = newClaps[index] - 1;
-  //     props.setClaps(newClaps);
-  //     props.setClapClicked(false);
-  //   }
-  // };
 
   return (
     <div className="card">
