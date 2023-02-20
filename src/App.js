@@ -14,7 +14,8 @@ function App() {
   });
 
   const [claps, setClaps] = React.useState(clapArray);
-  const [clapClicked, setClapClicked] = React.useState(clapClickedArray);
+  const [like, setLike] = React.useState([...clapClickedArray]);
+  const [clapClicked, setClapClicked] = React.useState([...clapClickedArray]);
 
   const clapHandler = (index) => {
     if(!clapClicked[index]) {
@@ -34,12 +35,25 @@ function App() {
       setClapClicked(newClapClicked);
     }
   };
+
+  const likeHandler = (index) => {
+    if(!like[index]) {
+      const newLike = [...like];
+      newLike[index] = true;
+      setLike(newLike);
+    }
+    else {
+      const newLike = [...like];
+      newLike[index] = false;
+      setLike(newLike);
+    }
+  };
   
   return (
     <div>
       <Header />
       <Body>
-      {data.data.map((item,i) =>  <Card data={item} claps={claps} clapHandler={clapHandler} index={i}/>)}
+      {data.data.map((item,index) =>  <Card key={index} data={item} claps={claps} clapHandler={clapHandler} like={like} likeHandler={likeHandler} index={index}/>)}
       </Body> 
       <Footer />
     </div>
