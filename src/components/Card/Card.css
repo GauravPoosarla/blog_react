@@ -5,14 +5,7 @@
 #root {
   font-family: 'Times New Roman', Times, serif;
 }
-
-.paddings{
-  padding-left: 120px;
-  padding-right: 120px;
-}
-
 .card{
-  margin: 80px;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -20,14 +13,14 @@
 }
 
 .card img{
-  height: 50%;
+  height: 175px;
   width: 100%;
 }
 
 .info{
   display: flex;
   flex-direction: column;
-  height: 60%;
+  height: 225px;
   justify-content: flex-start;
   padding: 5px;
   flex-wrap: wrap;
@@ -39,12 +32,13 @@
   font-weight: 1.82rem;
   margin-top: 5px;
   margin-bottom: 5px;
+  height: 70px;
 }
 
 .date-time{
   display: flex;
   flex-direction: row;
-  height: 10%;
+  height: 15px;
   color: rgb(192, 188, 188);
   justify-content: space-between;
   font-size: small;
@@ -55,6 +49,8 @@
   display: flex;
   color: rgb(155, 152, 152);
   font-size: small;
+  overflow: scroll;
+  height: 50px;
 }
 
 .engagements{
@@ -63,7 +59,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 15px;
+  height: 25px;
   color:rgb(155, 152, 152);
   font-size: small;
   

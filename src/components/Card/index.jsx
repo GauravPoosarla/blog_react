@@ -4,13 +4,13 @@ import clapping from "../../assets/Icons/clapping.svg";
 import heart_black from "../../assets/Icons/heart-black.svg";
 import heart_red from "../../assets/Icons/heart-red.svg";
 
-export default function Card(props) {
-  const [like, setLike] = React.useState(props.liked);
+export default function Card({ item }) {
+  const [like, setLike] = React.useState(item.liked);
   const [clap, setClap] = React.useState(false);
   const [imageSrc, setImageSrc] = React.useState("");
 
   function loadImage() {
-    import(`../../assets/Images/${props.image}`).then((image) => {
+    import(`../../assets/Images/${item.image}`).then((image) => {
       setImageSrc(image.default);
     });
   }
@@ -23,20 +23,25 @@ export default function Card(props) {
     setClap(!clap);
   };
 
-  React.useEffect(() => {
-    loadImage();
-  }, []);
+  const date = new Date(item.date);
+  // get date in dd/mm/yyyy format
+  const formattedDate = date.toLocaleString("en-GB", {
+    day: "numeric",
+    month: "short",
+  });
+
+  console.log();
 
   return (
     <div className="card">
-      <img className="card-img" src={imageSrc} alt="Card image cap" />
+      <img className="card-img" src={item.image} alt="Card image cap" />
       <div className="info">
         <div className="date-time">
-          <div className="date">{props.date}</div>
-          <div className="time">{props.readingTime}</div>
+          <div className="date">{formattedDate}</div>
+          <div className="time">{item.reading_time}</div>
         </div>
-        <div className="title">{props.title}</div>
-        <div className="description">{props.description}</div>
+        <div className="title">{item.title}</div>
+        <div className="description">{item.description}</div>
         <hr />
         <div className="engagements">
           <div>
@@ -47,7 +52,7 @@ export default function Card(props) {
               onClick={handleClaps}
             />
             <span className="clap">
-              {clap ? Number(props.claps) + 1 : props.claps}
+              {clap ? Number(item.claps) + 1 : item.claps}
             </span>
           </div>
           <div>

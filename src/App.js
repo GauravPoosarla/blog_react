@@ -3,21 +3,40 @@ import Header from './components/Header';
 import Body from './components/Body';
 import Footer from './components/Footer';
 import Card from './components/Card';
-import data from './assets/mockData/index.json';
+import { useState, useEffect } from 'react';
+import { GET_BLOG_DATA } from './constants/apiEndPoint';
+import makeRequest from './utils/makeRequest';
 
 function App() {
-  return (
+  const [blogData, setBlogData] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    makeRequest(GET_BLOG_DATA())
+    .then((response) => {
+      setBlogData(response);
+    })
+    .catch((error) => {
+      setError(error);
+    });
+  }, []);
+
+  console.log(blogData);
+
+  return blogData ? (
     <div>
       <Header />
       <Body>
-      {data.data.map((item,index) =>  
+      {blogData.map((item) =>  
       <Card 
-        key={index} 
-        {...item}
+        key={item.id} 
+        item={item}
       />)}
       </Body> 
       <Footer />
     </div>
+  ): (
+    <p>Loading</p>
   );
 }
 
