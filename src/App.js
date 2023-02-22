@@ -21,12 +21,16 @@ function App() {
     });
   }, []);
 
-  return blogData ? (
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+
+  return blogData.length !== 0 ? (
     <div>
       <Header />
       <Body>
       {blogData.map((item) =>  
-      <Card 
+      <Card
         key={item.id} 
         {...item}
       />)}

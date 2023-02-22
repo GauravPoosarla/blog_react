@@ -42,17 +42,25 @@ import * as utils from './utils/makeRequest';
 // });
 
 describe('App', () => {
-  it('renders App component', async () => {
+  it('renders App component', async () => { 
     render(<App />);
     expect(screen.getByText("Loading")).toBeTruthy();
   });
 
-  it('renders App component', async () => {
+  it('should render cards', async () => {
     jest.spyOn(utils, 'makeRequest').mockResolvedValue(mockBlogPosts);
-    const { asFragment } = render(<App />);
+    const { container } = render(<App />);
     await waitFor(() => {
-      expect(screen.getByText("mock title 1")).toBeTruthy();
+      expect(container.querySelectorAll(".card").length).toBe(2);
     });
-    expect(asFragment).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
+  });
+
+  it('should render error message', async () => {
+    jest.spyOn(utils, 'makeRequest').mockRejectedValue(new Error("error"));
+    render(<App />);
+    await waitFor(() => {
+      expect(screen.getByText("error")).toBeTruthy();
+    });
   });
 });
