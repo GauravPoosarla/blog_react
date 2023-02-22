@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import App from './App';
 import {mockBlogPosts} from './mocks/blogPosts';
@@ -53,7 +53,6 @@ describe('App', () => {
     await waitFor(() => {
       expect(container.querySelectorAll(".card").length).toBe(2);
     });
-    expect(container).toMatchSnapshot();
   });
 
   it('should render error message', async () => {

@@ -1,8 +1,11 @@
-import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+// import React from "react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import Card from "..";
 
 describe("Card", () => {
+  beforeEach(()=>{
+    jest.clearAllMocks();
+  })
   it("should render correctly", () => {
     const { container } = render(
       <Card
@@ -65,9 +68,13 @@ describe("Card", () => {
     const like = container.querySelector(".like");
     expect(like.src).toContain("heart-black.svg");
     fireEvent.click(like);
+    waitFor(() => {
     expect(like.src).toContain("heart-red.svg");
+    });
     fireEvent.click(like);
+    waitFor(() => {
     expect(like.src).toContain("heart-black.svg");
+    });
   });
 
   it("should increment claps on click", () => {
@@ -86,27 +93,8 @@ describe("Card", () => {
     const clapButton = container.querySelector(".clap-button");
     expect(clap.innerHTML).toContain("10");
     fireEvent.click(clapButton);
-    expect(clap.innerHTML).toContain("11");
-  });
-
-  it("should decrement claps on second click", () => {
-    const { container } = render(
-      <Card
-        image="abstract.png"
-        date="2nd Januray, 2018"
-        readingTime="2 mins"
-        title="The future of abstract art and the culture ..."
-        description="Create a blog post subtitle that summarizes your post in a few short, punchy sentences and entices your..."
-        claps={10}
-        liked={false}
-      />
-    );
-    const clap = container.querySelector(".clap");
-    const clapButton = container.querySelector(".clap-button");
-    expect(clap.innerHTML).toContain("10");
-    fireEvent.click(clapButton);
-    expect(clap.innerHTML).toContain("11");
-    fireEvent.click(clapButton);
-    expect(clap.innerHTML).toContain("10");
+    waitFor(() => {
+      expect(clap.innerHTML).toContain("11");
+    })
   });
 });

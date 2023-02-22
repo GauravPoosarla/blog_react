@@ -3,8 +3,11 @@ import "./Card.css";
 import clapping from "../../assets/Icons/clapping.svg";
 import heart_black from "../../assets/Icons/heart-black.svg";
 import heart_red from "../../assets/Icons/heart-red.svg";
+import { UPDATE_BLOG_DATA } from "../../constants/apiEndPoint";
+import { makeRequest } from "../../utils/makeRequest";
 
 export default function Card({
+  id,
   image,
   date,
   reading_time,
@@ -14,7 +17,7 @@ export default function Card({
   liked,
 }) {
   const [like, setLike] = React.useState(liked);
-  const [clap, setClap] = React.useState(false);
+  const [clap, setClap] = React.useState(claps);
   const [imageSrc, setImageSrc] = React.useState("");
 
   function loadImage() {
@@ -24,11 +27,19 @@ export default function Card({
   }
 
   const handleLike = () => {
-    setLike(!like);
+    makeRequest(UPDATE_BLOG_DATA(id), { data: { liked: !like } }).then(
+      (res) => {
+        setLike(!like);
+      }
+    );
   };
 
-  const handleClaps = () => {
-    setClap(!clap);
+  const handleClaps = (id) => {
+    makeRequest(UPDATE_BLOG_DATA(id), { data: { claps: clap + 1 } }).then(
+      (res) => {
+        setClap(clap + 1);
+      }
+    );
   };
 
   date = new Date(date);
@@ -54,9 +65,9 @@ export default function Card({
               src={clapping}
               alt="clap"
               className="clap-button"
-              onClick={handleClaps}
+              onClick={() => handleClaps(id)}
             />
-            <span className="clap">{clap ? Number(claps) + 1 : claps}</span>
+            <span className="clap">{clap}</span>
           </div>
           <div>
             {like ? (
