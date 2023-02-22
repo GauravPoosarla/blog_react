@@ -12,4 +12,4 @@ const makeRequest = async ({url, method}, dynamicConfig) => {
   return data;
 };
 
-export default makeRequest;
+export { makeRequest };

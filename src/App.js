@@ -5,7 +5,7 @@ import Footer from './components/Footer';
 import Card from './components/Card';
 import { useState, useEffect } from 'react';
 import { GET_BLOG_DATA } from './constants/apiEndPoint';
-import makeRequest from './utils/makeRequest';
+import {makeRequest} from './utils/makeRequest';
 
 function App() {
   const [blogData, setBlogData] = useState([]);
@@ -21,8 +21,6 @@ function App() {
     });
   }, []);
 
-  console.log(blogData);
-
   return blogData ? (
     <div>
       <Header />
@@ -30,7 +28,7 @@ function App() {
       {blogData.map((item) =>  
       <Card 
         key={item.id} 
-        item={item}
+        {...item}
       />)}
       </Body> 
       <Footer />

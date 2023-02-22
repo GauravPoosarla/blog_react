@@ -43,6 +43,7 @@ describe("Card", () => {
         description="Create a blog post subtitle that summarizes your post in a few short, punchy sentences and entices your..."
         claps={0}
         liked={false}
+
       />
     );
     expect(container).toMatchSnapshot();
